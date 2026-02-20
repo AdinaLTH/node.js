@@ -44,3 +44,14 @@ const obj1 = {
     return `이름은 ${this.name}`;
   },
 };
+
+// class Student
+function Member(memberNo, memberName) {
+  this.memberNo = memberNo;
+  this.memberName = memberName;
+  this.showInfo = function () {
+    return `번호는 ${this.memberNo}, 이름은 ${this.memberName}`;
+  };
+}
+const m1 = new Member("M001", "User01"); // 인스턴스
+console.log(m1.showInfo());
