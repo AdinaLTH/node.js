@@ -1,0 +1,33 @@
+// spread operator(펼침 연산자)
+const ary1 = [1, 2, 3];
+const ary2 = [4, 5, 6];
+
+const ary3 = [...ary1, ...ary2];
+console.log(ary3);
+
+// 객체 구조분해(destructuring)
+const obj = { first_name: "kildong", last_name: "Hong", age: 20 };
+const { first_name, last_name, age } = obj;
+console.log(first_name, last_name, age);
+
+// 배열 구조분해(destructuring)
+const [a1, ...a2] = ary1;
+console.log(a1, a2);
+
+const [m1, m2, m3] = getMember();
+// const [meta, rows] = conn.execute('select * from board')
+console.log(m1, m2, m3);
+console.log(getMember());
+
+// default parameter function (매개변수의 초기값)
+function sum(n1 = 0, n2 = 0, ...args) {
+  // if (n1 == undefined) return 0;
+  // if (n2 == undefined) return n1;
+  let result = n1 + n2;
+  for (const ele of args) {
+    result += ele;
+  }
+  return result;
+}
+result = sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+console.log(result); // NaN
