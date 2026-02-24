@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const sql = require("./sql");
+const nodemailer = require("nodemailer");
 
 // connection pool
 const pool = mysql.createPool({

@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const mysql = require("./index");
 const encrypto = require("./crypto");
+const nodemailer = require("./nodemailer");
 
 // express 인스턴스
 const app = express();
@@ -61,6 +62,14 @@ app.post("/api/login", async (req, res) => {
   // checkPassword()
   const success = encrypto.checkPassword(plainTxt, passwd);
   res.json({ success }); // 로그인 성공 여부
+});
+
+// 6. 메일발송
+app.post("/api/mail", async (req, res) => {
+  const { from, to, subject, text } = req.body;
+
+  const result = await nodemailer.send({ from, to, subject, text });
+  res.json(result);
 });
 
 app.listen(3000, () => {
