@@ -12,6 +12,8 @@ const app = express();
 
 // body-parser
 app.use(express.json());
+// 정적 페이지
+app.use(express.static("public"));
 
 // 라우팅
 // 1. 전체 목록 조회 리소스+요청방식 => CRUD(REST 방식)
@@ -67,6 +69,12 @@ app.post("/api/login", async (req, res) => {
 // 6. 메일발송
 app.post("/api/mail", async (req, res) => {
   const { from, to, subject, text } = req.body;
+
+  // multi 라인으로 변경(기존에는 여러줄도 한줄로 이어서 출력)
+  const html = text
+    .split("\n")
+    .map((elem) => `<p>${elem}</p>`)
+    .join("");
 
   const result = await nodemailer.send({ from, to, subject, text });
   res.json(result);
