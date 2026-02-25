@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>엑셀 파일 업로드</title>
+    <link rel="stylesheet" href="xls_style.css" />
+  </head>
+  <body>
+    <div class="upload-container">
+      <div class="upload-header">
+        <h2>Excel 파일 업로드</h2>
+        <p>분석할 .xls 또는 .xlsx 파일을 선택하세요.</p>
+      </div>
+
+      <form
+        id="uploadForm"
+        action="./api/excel_upload"
+        enctype="multipart/form-data"
+        method="post"
+      >
+        <div class="file-drop-area" id="dropArea">
+          <span class="icon">📊</span>
+          <span class="msg">파일을 이곳에 드래그하거나 클릭하세요</span>
+          <input type="file" name="myfile" />
+        </div>
+
+        <div id="fileInfo" class="file-info" style="display: none">
+          <span class="file-name"></span>
+          <button type="button" id="removeBtn" class="remove-btn">✕</button>
+        </div>
+
+        <button type="submit" class="submit-btn">서버로 전송하기</button>
+      </form>
+    </div>
+
+    <script>
+      dropArea.onclick = () => fileInput.click();
+      // 간단한 UI 상호작용 스크립트
+      document.getElementById("uploadForm").addEventListener("submit", (e) => {
+        console.log(e);
+        const excelData = new ExcelData();
+        formData.append("myfile", e.target[4].files[0]);
+
+        fetch("./api/excel_upload", {
+          method: "post",
+          body: excelData,
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((err) => console.log(err));
+      });
+    </script>
+  </body>
+</html>

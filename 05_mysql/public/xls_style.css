@@ -1,0 +1,108 @@
+/* 기본 초기화 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family:
+    "Pretendard",
+    -apple-system,
+    sans-serif;
+}
+
+body {
+  background-color: #f4f7f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 컨테이너 스타일 */
+.upload-container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+}
+
+.upload-header h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.upload-header p {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* 파일 드롭 영역 */
+.file-drop-area {
+  border: 2px dashed #cbd5e0;
+  border-radius: 12px;
+  padding: 40px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fafbfc;
+}
+
+.file-drop-area:hover,
+.file-drop-area.active {
+  border-color: #4a90e2;
+  background-color: #f0f7ff;
+}
+
+.file-drop-area .icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.file-drop-area .msg {
+  font-size: 15px;
+  color: #555;
+}
+
+/* 파일 정보 표시 */
+.file-info {
+  margin-top: 20px;
+  background: #eef2f7;
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ff4d4f;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 제출 버튼 */
+.submit-btn {
+  margin-top: 25px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4a90e2;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #357abd;
+}

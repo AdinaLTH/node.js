@@ -112,9 +112,9 @@ app.post("/api/mail", upload.single("myfile"), async (req, res) => {
 
 // 엑셀파일 첨부 후 db insert
 app.post("/api/excel_upload", upload.single("myfile"), async (req, res) => {
-  excel_run(req.file.path);
-
-  res.send("upload ok");
+  const result = await excel_run(req.file.path);
+  console.log(result);
+  res.json(result);
 });
 
 app.listen(3000, () => {
