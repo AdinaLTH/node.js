@@ -3,19 +3,19 @@ board-app/
 ├── app.js
 ├── .env
 ├── config/
-│ └── db.js
+│   └── db.js
 ├── middleware/
-│ └── auth.js
+│   └── auth.js
 ├── models/
-│ ├── memberModel.js
-│ └── boardModel.js
+│   ├── memberModel.js
+│   └── boardModel.js
 ├── services/
-│ ├── authService.js
-│ └── boardService.js
+│   ├── authService.js
+│   └── boardService.js
 ├── controllers/
-│ ├── authController.js
-│ └── boardController.js
+│   ├── authController.js
+│   └── boardController.js
 └── routes/
-├── authRoutes.js
-└── boardRoutes.js
+    ├── authRoutes.js
+    └── boardRoutes.js
 ```
