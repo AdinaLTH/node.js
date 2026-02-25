@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+require("dotenv").config();
 const sql = require("./sql");
 const nodemailer = require("nodemailer");
 
