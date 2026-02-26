@@ -1,0 +1,108 @@
+/* 기본 배경 및 폰트 설정 */
+body {
+  font-family:
+    "Pretendard",
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    sans-serif;
+  background-color: #f4f7f6;
+  margin: 0;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* 상세 페이지 전체 컨테이너 */
+.detail-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+/* 제목 및 작성자/날짜 영역 */
+.detail-header {
+  border-bottom: 2px solid #eeeeee;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.detail-title {
+  margin: 0 0 15px 0;
+  color: #333333;
+  font-size: 28px;
+  line-height: 1.4;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 20px;
+  color: #777777;
+  font-size: 14px;
+}
+
+/* 본문 내용 영역 */
+.detail-content {
+  min-height: 300px; /* 글 내용이 짧아도 기본 높이 유지 */
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+  white-space: pre-wrap; /* DB에 저장된 텍스트의 줄바꿈(\n)을 화면에 그대로 반영 */
+  margin-bottom: 40px;
+}
+
+/* 하단 버튼 영역 */
+.detail-actions {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eeeeee;
+  padding-top: 20px;
+}
+
+.right-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* 버튼 공통 스타일 */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* 목록 버튼 */
+.btn-list {
+  background-color: #f1f1f1;
+  color: #555555;
+}
+.btn-list:hover {
+  background-color: #e2e2e2;
+}
+
+/* 수정 버튼 */
+.btn-edit {
+  background-color: #4a90e2;
+  color: white;
+}
+.btn-edit:hover {
+  background-color: #357abd;
+}
+
+/* 삭제 버튼 (경고 의미로 붉은색 계열 사용) */
+.btn-delete {
+  background-color: #ff6b6b;
+  color: white;
+}
+.btn-delete:hover {
+  background-color: #fa5252;
+}

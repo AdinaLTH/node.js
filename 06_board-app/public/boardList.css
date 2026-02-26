@@ -1,0 +1,149 @@
+/* 기본 배경 및 폰트 설정 */
+body {
+  font-family:
+    "Pretendard",
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    sans-serif;
+  background-color: #f4f7f6;
+  margin: 0;
+  padding: 60px 20px; /* 상하 여백을 주어 화면 중앙에 오도록 배치 */
+  display: flex;
+  justify-content: center;
+}
+
+/* 게시판 전체 컨테이너 */
+.board-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 900px; /* 폼보다 넓게 설정하여 표가 잘 보이게 함 */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* 헤더 영역 (제목 및 버튼) */
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.board-header h2 {
+  margin: 0;
+  color: #333333;
+  font-size: 24px;
+}
+
+.write-btn {
+  background-color: #4a90e2;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.write-btn:hover {
+  background-color: #357abd;
+}
+
+/* 테이블 기본 스타일 */
+.board-table {
+  width: 100%;
+  border-collapse: collapse; /* 테두리 겹침 방지 */
+  text-align: center;
+}
+
+/* 각 열(Column)의 너비 비율 설정 */
+.col-num {
+  width: 10%;
+}
+.col-title {
+  width: 50%;
+}
+.col-author {
+  width: 15%;
+}
+.col-date {
+  width: 25%;
+}
+
+/* 테이블 헤더 및 셀 여백/테두리 */
+.board-table th,
+.board-table td {
+  padding: 16px 10px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.board-table th {
+  background-color: #f8f9fa;
+  color: #555555;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.board-table td {
+  color: #444444;
+  font-size: 15px;
+}
+
+/* 제목 열은 좌측 정렬 및 링크 스타일 추가 */
+.board-table td.title {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.board-table td.title a {
+  color: #333333;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.board-table td.title a:hover {
+  color: #4a90e2;
+  text-decoration: underline;
+}
+
+/* 마우스 올렸을 때 행 배경색 변경 (포커스 효과) */
+.board-table tbody tr:hover {
+  background-color: #fdfdfd;
+}
+
+/* 하단 페이지 네비게이션(페이징) 스타일 */
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pagination a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  color: #555555;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.pagination a:hover {
+  background-color: #f1f1f1;
+}
+
+/* 현재 보고 있는 페이지 버튼 강조 */
+.pagination a.active {
+  background-color: #4a90e2;
+  color: white;
+  border-color: #4a90e2;
+}

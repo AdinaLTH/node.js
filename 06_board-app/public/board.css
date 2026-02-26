@@ -1,0 +1,111 @@
+/* 기본 배경 및 중앙 정렬 설정 */
+body {
+  font-family:
+    "Pretendard",
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    sans-serif;
+  background-color: #f4f7f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* 폼 전체를 감싸는 카드 디자인 */
+.post-form-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 600px; /* 폼의 최대 너비 */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.post-form-container h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: #333333;
+  text-align: center;
+  font-size: 24px;
+}
+
+/* 개별 입력 영역 설정 */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555555;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
+  font-family: inherit;
+  font-size: 15px;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+/* 입력 필드 클릭(포커스) 시 효과 */
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+.form-group textarea {
+  resize: vertical; /* 세로로만 크기 조절 가능하게 설정 */
+}
+
+/* 하단 버튼 영역 */
+.form-actions {
+  display: flex;
+  justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
+  gap: 12px;
+  margin-top: 30px;
+}
+
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* 등록 버튼 스타일 */
+.submit-btn {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.submit-btn:hover {
+  background-color: #357abd;
+}
+
+/* 취소 버튼 스타일 */
+.cancel-btn {
+  background-color: #f1f1f1;
+  color: #555555;
+}
+
+.cancel-btn:hover {
+  background-color: #e2e2e2;
+}

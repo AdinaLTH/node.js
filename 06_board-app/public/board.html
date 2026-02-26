@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시글 등록</title>
+    <link rel="stylesheet" href="board.css" />
+  </head>
+  <body>
+    <div class="post-form-container">
+      <h2>게시글 작성</h2>
+      <form
+        id="boardForm"
+        action="./api/board"
+        enctype="multipart/form-data"
+        method="POST"
+      >
+        <div class="form-group">
+          <label for="title">제목</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="제목을 입력하세요"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="author">작성자</label>
+          <input
+            type="text"
+            id="writer_id"
+            name="writer_id"
+            placeholder="작성자의 이름을 입력하세요"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="content">내용</label>
+          <textarea
+            id="content"
+            name="content"
+            rows="10"
+            placeholder="내용을 상세히 입력하세요"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="cancel-btn">취소</button>
+          <button type="submit" class="submit-btn">등록</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      document.querySelector("#boardForm").addEventListener("submit", (e) => {
+        console.log(e);
+        e.preventDefault(); // form submit 기본 기능 차단
+        // 필요 항목 지정
+        const title = document.querySelector("#title").value;
+        const writer_id = document.querySelector("#writer_id").value;
+        const content = document.querySelector("#content").value;
+        if (!title || !writer_id || !content) {
+          alert("필수 항목 입력");
+          return;
+        }
+
+        const postData = { title, writer_id, content };
+
+        // fetch
+        fetch("./api/board", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(postData),
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            console.log(data);
+            if (data.retCode == "OK") {
+              alert("글 등록 성공");
+              location.href = "boardList.html";
+            } else {
+              alert("글 등록 실패");
+            }
+          })
+          .catch((err) => console.log(err));
+      });
+    </script>
+  </body>
+</html>
