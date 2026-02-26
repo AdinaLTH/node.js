@@ -9,14 +9,14 @@
   <body>
     <div class="detail-container">
       <div class="detail-header">
-        <h2 class="detail-title">{제목}</h2>
+        <h2 class="detail-title"></h2>
         <div class="detail-meta">
-          <span class="author">작성자: {작성자}</span>
-          <span class="date">작성일시: {작성일시}</span>
+          <span class="author"></span>
+          <span class="date"></span>
         </div>
       </div>
 
-      <div class="detail-content">{내용}</div>
+      <div class="detail-content"></div>
 
       <div class="detail-actions">
         <button
@@ -33,6 +33,34 @@
         </div>
       </div>
     </div>
-    <script></script>
+    <script>
+      const pageNo = localStorage.getItem("page");
+
+      fetch("./api/board/" + pageNo)
+        .then((resp) => resp.json())
+        .then((data) => {
+          const title_parent = document.querySelector(".detail-header");
+          for (const board of data) {
+            const { board_id, title, name, created_at } = board;
+            const html = `
+            <span>${board_id}</span>
+              <h2 class="detail-title">${title}</h2>
+              <div class="detail-meta">
+                <span class="author">${name}</span>
+                <span class="date">${created_at}</span>
+              </div>
+            `;
+            title_parent.insertAdjacentHTML("beforeend", html);
+          }
+          const content_parent = document.querySelector(".detail-content");
+          for (const board of data) {
+            const { content } = board;
+            const html = `
+              <p>${content}</p>
+            `;
+            content_parent.insertAdjacentHTML("beforeend", html);
+          }
+        });
+    </script>
   </body>
 </html>
