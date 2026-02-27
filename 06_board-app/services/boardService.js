@@ -13,8 +13,12 @@ async function getDetail(id) {
 }
 
 // 등록(create)
-async function create({ title, content, writer_id }) {
-  return boardModel.insert({ title, content, writer_id });
+async function create({ title, content, writerId }) {
+  return boardModel.insert({ title, content, writerId });
 }
 
-module.exports = { getList, getDetail, create };
+async function remove(writerId) {
+  return boardModel.remove();
+}
+
+module.exports = { getList, getDetail, create, remove };

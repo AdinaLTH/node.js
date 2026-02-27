@@ -18,16 +18,20 @@ const detail = async (req, res) => {
 
 // 등록(create)
 const create = async (req, res) => {
-  const { title, content, writer_id } = req.body;
-  console.log(req.body);
+  const { title, content } = req.body;
+  const writerId = req.user.member_id; // token 저장된 값
   try {
-    const [rows] = await boardService.create({ title, content, writer_id });
-    console.log(rows);
+    await boardService.create({ title, content, writerId });
     res.json({ retCode: "OK" });
   } catch (err) {
     console.log(err);
-    res.json({ retCode: "NG" });
+    const msg = err ? err.sqlMessage : "알 수 없는 예외발생";
+    res.json({ retCode: "NG", retMsg: msg });
   }
 };
 
-module.exports = { list, detail, create };
+const remove = async (req, res) => {
+  const { writerId } = req.params;
+};
+
+module.exports = { list, detail, create, remove };

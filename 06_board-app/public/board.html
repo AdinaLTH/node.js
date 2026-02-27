@@ -55,20 +55,26 @@
         e.preventDefault(); // form submit 기본 기능 차단
         // 필요 항목 지정
         const title = document.querySelector("#title").value;
-        const writer_id = document.querySelector("#writer_id").value;
+        const writerId = document.querySelector("#writer_id").value;
         const content = document.querySelector("#content").value;
-        if (!title || !writer_id || !content) {
+        if (!title || !writerId || !content) {
           alert("필수 항목 입력");
           return;
         }
 
-        const postData = { title, writer_id, content };
+        const postData = { title, writerId, content };
 
         // fetch
         fetch("./api/board", {
           method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(postData),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          body: JSON.stringify({
+            title: postData.title,
+            content: postData.content,
+          }),
         })
           .then((resp) => resp.json())
           .then((data) => {

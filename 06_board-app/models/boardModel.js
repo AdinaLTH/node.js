@@ -24,12 +24,19 @@ async function getById(id) {
 }
 
 // 등록(insert)
-async function insert({ title, content, writer_id }) {
+async function insert({ title, content, writerId }) {
   const sql = `
     INSERT INTO tbl_board set ?
   `;
-  return pool.query(sql, [{ title, content, writer_id }]);
+  return pool.query(sql, [{ title, content, writerId }]);
+}
+
+async function remove(writerId) {
+  const sql = `
+    DELETE FROM tbl_board WHERE writer_id = ?
+  `;
+  return pool.query(sql, [writerId]);
 }
 
 // 모듈 export
-module.exports = { getList, getById, insert };
+module.exports = { getList, getById, insert, remove };
