@@ -17,8 +17,17 @@ async function create({ title, content, writerId }) {
   return boardModel.insert({ title, content, writerId });
 }
 
-async function remove(writerId) {
-  return boardModel.remove();
+async function remove(board_id, user) {
+  const [rows] = await boardModel.getById(board_id);
+  console.log(rows);
+  const board = rows[0];
+  console.log(board);
+
+  if (board.writer_id != user.member_id) {
+    return "NO_AUTH";
+  }
+
+  return boardModel.remove(board_id);
 }
 
 module.exports = { getList, getDetail, create, remove };

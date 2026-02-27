@@ -9,6 +9,6 @@ router.get("/:id", ctrl.detail);
 // CUD
 // ctrl.create
 router.post("/", mid.verifyToken, ctrl.create);
-router.delete("/", mid.verifyToken, ctrl.remove);
+router.delete("/:id", mid.verifyToken, ctrl.remove);
 
 module.exports = router;

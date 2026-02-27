@@ -50,14 +50,15 @@
           document.querySelector("#member_id").innerHTML = user.member_id;
           document.querySelector("#writer_id").innerHTML = board.writer_id;
           // 비활성화
-          if (user.member_id != board.writer_id) {
-            document.querySelector(".btn-delete").disabled = true;
-            document.querySelector(".btn-edit").disabled = true;
-          }
+          // if (user.member_id != board.writer_id) {
+          //   document.querySelector(".btn-delete").disabled = true;
+          //   document.querySelector(".btn-edit").disabled = true;
+          // }
 
           document.querySelector("span.login").innerHTML =
             `login id: ${user.login_id} (${user.name})`;
-          document.querySelector(".detail-no").innerHTML = board.board_id;
+          document.querySelector(".detail-no").innerHTML =
+            `No${board.board_id}`;
           document.querySelector(".detail-title").innerHTML = board.title;
           document.querySelector(".author").innerHTML = board.name;
           document.querySelector(".date").innerHTML = board.created_at;
@@ -80,34 +81,27 @@
 
       // 삭제버튼 이벤트
       document.querySelector(".btn-delete").addEventListener("click", (e) => {
-        // 권한 체크
-        const mid = document.querySelector("#member_id").innerHTML;
-        const wid = document.querySelector("#writer_id").innerHTML;
-        if (mid == wid) {
-          alert("수정페이지로 이동합니다");
-        } else {
-          alert("권한이 없습니다!");
-          return;
-        }
+        const deleteId = document
+          .querySelector(".detail-no")
+          .innerText.replace("No", "");
+
+        console.log(deleteId);
         // fetch
-        fetch("./api/board", {
+        // http://localhost:3000//api/board/19
+        fetch("./api/board/" + deleteId, {
           method: "delete",
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
-          body: JSON.stringify({
-            title: postData.title,
-            content: postData.content,
-          }),
         })
           .then((resp) => resp.json())
           .then((data) => {
             console.log(data);
             if (data.retCode == "OK") {
-              alert("글 등록 성공");
+              alert("삭제 성공");
               location.href = "boardList.html";
             } else {
-              alert("글 등록 실패");
+              alert("삭제 실패");
             }
           })
           .catch((err) => console.log(err));

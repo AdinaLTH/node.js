@@ -31,11 +31,11 @@ async function insert({ title, content, writerId }) {
   return pool.query(sql, [{ title, content, writerId }]);
 }
 
-async function remove(writerId) {
+async function remove(id) {
   const sql = `
-    DELETE FROM tbl_board WHERE writer_id = ?
+    DELETE FROM tbl_board WHERE board_id = ?
   `;
-  return pool.query(sql, [writerId]);
+  return pool.query(sql, [id]);
 }
 
 // 모듈 export
