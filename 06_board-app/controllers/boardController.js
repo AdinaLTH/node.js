@@ -11,7 +11,9 @@ const list = async (req, res) => {
 const detail = async (req, res) => {
   const { id } = req.params;
   const [rows] = await boardService.getDetail(id);
-  res.json(rows);
+  // 현재 로그인 정보(login_id, name)
+  const { login_id, name, member_id } = req.session.user;
+  res.json({ user: { login_id, name, member_id }, data: rows });
 };
 
 // 등록(create)

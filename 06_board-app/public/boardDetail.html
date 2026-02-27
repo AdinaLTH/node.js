@@ -8,7 +8,12 @@
   </head>
   <body>
     <div class="detail-container">
+      <!-- 로그인정보 vs 작성자정보 -->
+      <div id="member_id" style="display: none"></div>
+      <div id="writer_id" style="display: none"></div>
       <div class="detail-header">
+        <p class="detail-no"></p>
+        <span class="login"></span>
         <h2 class="detail-title"></h2>
         <div class="detail-meta">
           <span class="author"></span>
@@ -38,29 +43,40 @@
 
       fetch("./api/board/" + pageNo)
         .then((resp) => resp.json())
-        .then((data) => {
-          const title_parent = document.querySelector(".detail-header");
-          for (const board of data) {
-            const { board_id, title, name, created_at } = board;
-            const html = `
-            <span>${board_id}</span>
-              <h2 class="detail-title">${title}</h2>
-              <div class="detail-meta">
-                <span class="author">${name}</span>
-                <span class="date">${created_at}</span>
-              </div>
-            `;
-            title_parent.insertAdjacentHTML("beforeend", html);
+        .then(({ user, data }) => {
+          console.log(data); // {user: {...}, data: [{...}]}
+          const [board] = data;
+          // member_id, writer_id 값 지정
+          document.querySelector("#member_id").innerHTML = user.member_id;
+          document.querySelector("#writer_id").innerHTML = board.writer_id;
+          // 비활성화
+          if (user.member_id != board.writer_id) {
+            document.querySelector(".btn-delete").disabled = true;
+            document.querySelector(".btn-edit").disabled = true;
           }
-          const content_parent = document.querySelector(".detail-content");
-          for (const board of data) {
-            const { content } = board;
-            const html = `
-              <p>${content}</p>
-            `;
-            content_parent.insertAdjacentHTML("beforeend", html);
-          }
-        });
+
+          document.querySelector("span.login").innerHTML =
+            `login id: ${user.login_id} (${user.name})`;
+          document.querySelector(".detail-no").innerHTML = board.board_id;
+          document.querySelector(".detail-title").innerHTML = board.title;
+          document.querySelector(".author").innerHTML = board.name;
+          document.querySelector(".date").innerHTML = board.created_at;
+          document.querySelector(".detail-content").innerHTML = board.content;
+        })
+        .catch(console.log);
+
+      // 수정버튼 이벤트
+      document.querySelector(".btn-edit").addEventListener("click", (e) => {
+        // 권한 체크
+        const mid = document.querySelector("#member_id").innerHTML;
+        const wid = document.querySelector("#writer_id").innerHTML;
+        if (mid == wid) {
+          alert("수정페이지로 이동합니다");
+        } else {
+          alert("권한이 없습니다!");
+          return;
+        }
+      });
     </script>
   </body>
 </html>
